@@ -9,6 +9,6 @@ async function getTemperatureData(bbox: string) {
 export function useTemperatureData(bbox: string) {
     return useQuery({
         queryKey: ['temperature', bbox],
-        queryFn: () => getTemperatureData(bbox),
+        queryFn: () => getTemperatureData(bbox)
     })
 }

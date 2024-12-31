@@ -1,17 +1,29 @@
+import { useEffect, useState } from 'react';
 import { useTemperatureData } from '@/services/temperature';
 import { Circle, Popup, useMap } from 'react-leaflet';
 
-
 export const TemperatureOverlay = () => {
     const map = useMap();
+    const [bbox, setBbox] = useState<string>('');
 
-    const bounds = map.getBounds();
-    const northEast = bounds.getNorthEast();
-    const southWest = bounds.getSouthWest();
-    const bbox = `${southWest.lng},${southWest.lat},${northEast.lng},${northEast.lat}`;
+    const updateBbox = () => {
+        const bounds = map.getBounds();
+        const northEast = bounds.getNorthEast();
+        const southWest = bounds.getSouthWest();
+        const newBbox = `${southWest.lng},${southWest.lat},${northEast.lng},${northEast.lat}`;
+        setBbox(newBbox);
+    };
+
+    useEffect(() => {
+        updateBbox();
+        map.on('moveend', updateBbox);
+
+        return () => {
+            map.off('moveend', updateBbox);
+        };
+    }, [map]);
 
     const { data } = useTemperatureData(bbox);
-
 
     return (
         <>
