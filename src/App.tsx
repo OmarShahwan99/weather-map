@@ -11,7 +11,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('Damascus');
   const [position, setPosition] = useState<[number, number]>([33.5, 36.3]);
 
-  const { data, isLoading } = useForecast(q);
+  const { data, isLoading, isError } = useForecast(q);
 
   useEffect(() => {
     if (data) {
@@ -24,6 +24,8 @@ function App() {
       setQ(searchQuery);
     }
   };
+
+  console.log(isError)
 
   return (
     <div className="h-screen relative">
@@ -52,6 +54,13 @@ function App() {
           />
         )}
       </div>
+
+      {/* Error Message */}
+      {isError && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-red-500 bg-red-200 p-3 rounded-lg shadow">
+          No matching location found.
+        </div>
+      )}
 
       {/* Loading Overlay */}
       {isLoading && (
