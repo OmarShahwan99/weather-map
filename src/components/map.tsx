@@ -17,7 +17,7 @@ const MapComponent = ({ position }: { position: [number, number] }) => {
         <div className="h-full w-full rounded-lg shadow-lg overflow-hidden">
             <MapContainer
                 center={position}
-                zoom={9}
+                zoom={8}
                 style={{ height: '100%', width: '100%' }}
             >
                 <ChangeMapCenter position={position} />
