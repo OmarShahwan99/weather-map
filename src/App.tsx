@@ -25,7 +25,6 @@ function App() {
     }
   };
 
-  console.log(isError)
 
   return (
     <div className="h-screen relative">
@@ -43,7 +42,7 @@ function App() {
       </div>
 
       {/* Forecast */}
-      <div className='grid gap-4 grid-cols-1 md: grid-cols-2 lg:grid-cols-3 absolute bottom-5 left-1/2 -translate-x-1/2 z-[999] w-[90%]'>
+      <div className='grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 absolute bottom-5 left-1/2 -translate-x-1/2 z-[999] w-[90%]'>
         {data?.forecast.forecastday.map((day, index) =>
           <ForecastCard
             key={index}

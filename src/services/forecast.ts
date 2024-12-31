@@ -16,3 +16,5 @@ export function useForecast(q?: string, days?: number) {
         enabled: !!q && (q?.length > 3),
     })
 }
+
+

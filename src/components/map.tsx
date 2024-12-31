@@ -1,13 +1,8 @@
 import { MapContainer, TileLayer, LayersControl, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-L.Icon.Default.mergeOptions({
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow,
-});
+import { TemperatureOverlay } from './temperature-overlay';
+
 
 const ChangeMapCenter = ({ position }: { position: [number, number] }) => {
     const map = useMap();
@@ -22,7 +17,7 @@ const MapComponent = ({ position }: { position: [number, number] }) => {
         <div className="h-full w-full rounded-lg shadow-lg overflow-hidden">
             <MapContainer
                 center={position}
-                zoom={13}
+                zoom={9}
                 style={{ height: '100%', width: '100%' }}
             >
                 <ChangeMapCenter position={position} />
@@ -40,6 +35,7 @@ const MapComponent = ({ position }: { position: [number, number] }) => {
                         />
                     </LayersControl.BaseLayer>
                 </LayersControl>
+                <TemperatureOverlay />
             </MapContainer>
         </div>
     );
